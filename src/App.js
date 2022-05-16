@@ -1,23 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import { Route, Routes } from "react-router-dom";
+// import Navbar from "./Components/Navbar";
+import Navbar from './Components/Navbar'
+import NotFound from "./NotFound";
+import About from "./page/About";
+import Contact from "./page/Contact";
+import Home from "./page/Home/Home";
+import Login from "./page/Login";
+import Services from "./page/Services";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+
 
 function App() {
+
+useEffect(()=>{
+  AOS.init()
+},[]);
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Navbar>
+        <Routes>
+          <Route path="/" element={<Home/>}></Route>
+          <Route path="/home" element={<Home/>}></Route>
+          <Route path="/about" element={<About/>}></Route>
+          <Route path="/service" element={<Services/>}></Route>
+          <Route path="/contact" element={<Contact/>}></Route>
+          <Route path="/login" element={<Login/>}></Route>
+          <Route path="*" element={<NotFound/>}></Route>
+        </Routes>
+      </Navbar>
     </div>
   );
 }
